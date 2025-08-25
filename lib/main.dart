@@ -89,36 +89,38 @@ class _TextRecognitionScreenState extends State<TextRecognitionScreen> {
 
   Text _myText() => Text(text, style: TextStyle(fontSize: 20));
 
-  Row _buttonSegment() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        _myButton(
-          onTap: () => _onClickButton(imageSource: ImageSource.gallery),
-          text: "Gallery",
-        ),
-        _myButton(
-          onTap: () => _onClickButton(imageSource: ImageSource.camera),
-          text: "Camera",
-        ),
-      ],
+  Widget _buttonSegment() {
+    return FittedBox(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        spacing: 8,
+        children: [
+          _myButton(
+            onTap: () => _onClickButton(imageSource: ImageSource.gallery),
+            text: "Gallery",
+          ),
+          _myButton(
+            onTap: () => _onClickButton(imageSource: ImageSource.camera),
+            text: "Camera",
+          ),
+        ],
+      ),
     );
   }
 
   Widget _myButton({required void Function() onTap, required String text}) {
-    return SizedBox(
-      width: 170,
-      height: 50,
-      child: ElevatedButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue,
-          alignment: Alignment.center,
-          elevation: 10,
-        ),
+    return ElevatedButton(
+      onPressed: onTap,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blue,
+        alignment: Alignment.center,
+        elevation: 10,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Text(
-          "Pick image from $text",
-          style: TextStyle(color: Colors.white, fontSize: 16),
+          "Pick image from\n$text",
+          style: TextStyle(color: Colors.white),
           textAlign: TextAlign.center,
         ),
       ),
